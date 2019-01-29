@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class DashBoard
+ * Servlet implementation class LogOut
  */
-@WebServlet(value = "/dashBoard" , name="dashBoard")
-public class DashBoard extends HttpServlet {
+@WebServlet(value = "/dashBoard/logOut" , name="dashBoard/logOut")
+public class LogOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DashBoard() {
+    public LogOut() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,12 @@ public class DashBoard extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("view/dashBoard/DashBoard.jsp").forward(request, response);
+			com.greenIt.Service.LogOut.logOut(request.getSession()) ; 
+			response.sendRedirect(request.getContextPath());
+
+			
+		
+	
 	}
 
 	/**

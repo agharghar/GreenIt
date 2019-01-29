@@ -23,22 +23,13 @@ public class DataBaseSeeding {
 		
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory() ; 
 		Session session = sessionFactory.openSession() ; 
-		Query query = session.createQuery("from Employe where email_empl=:email AND mot_passe_empl=:password") ;
 
-		try{
-			 
-			query.setString("email","admidn@admin.com") ; 
-			query.setString("password","admin") ; 
-			System.out.println(query.getSingleResult().getClass().equals(Employe.class)); 
-			System.out.println(query.getSingleResult().equals(null));
-			System.out.println(query.getSingleResult().toString());
-			
-		}catch (NoResultException nre){
-			nre.getStackTrace() ; 
-				System.out.println("lool");
-			}
-
-		
+		Employe employe = session.get(Employe.class, 2) ; 
+		System.out.println(employe);
+		System.out.println(employe.getEquipe());
+		for (Tache tache : employe.getTaches()) {
+			System.out.println(tache.getId()+"|"+tache.getProject().getCode_pro());
+		}
  
 		
 
