@@ -7,20 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.greenIt.Service.Tache;
-
 /**
- * Servlet implementation class EditeTache
+ * Servlet implementation class Projet
  */
-@WebServlet(value = "/dashBoard/editTache" , name="dashBoard/editTache")
 
-public class EditTache extends HttpServlet {
+@WebServlet(value = "/dashBoard/projet" , name="dashBoard/projet")
+public class Projet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditTache() {
+    public Projet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +28,21 @@ public class EditTache extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		if(request.getAttribute("chef") != null ) {
+			request.getRequestDispatcher("/view/dashBoard/projet/Projet.jsp").forward(request, response);
+
+		}else {
+			request.getRequestDispatcher("/dashBoard").forward(request, response);
+		}
 		
-		Tache.getTacheById( Integer.parseInt( request.getParameter("tacheId") ) , request.getSession(false)) ; 
-		request.getRequestDispatcher("/view/dashBoard/tache/EditTache.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		Tache tacheUpdate = new Tache() ;
-		tacheUpdate.update(
-				
-				Integer.valueOf(request.getParameter("tacheId").trim())
-				, request.getParameter("debut")
-				, request.getParameter("fin")
-				, request.getParameter("statut")
-				,request.getSession()
-				) ; 
-		request.getRequestDispatcher("/dashBoard").forward(request, response);
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

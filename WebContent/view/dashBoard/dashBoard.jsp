@@ -22,15 +22,20 @@
 
 
 <div class="row">
-<a href="${pageContext.request.contextPath}/dashBoard/logOut" >Déconnection</a>
-<a href="${pageContext.request.contextPath}/dashBoard/profile" >Profile</a>
+<a href="${pageContext.request.contextPath}/dashBoard/logOut" >Déconnection</a> | 
+<a href="${pageContext.request.contextPath}/dashBoard/profile" >Profile</a> | 
+<%if(((Employe) session.getAttribute("employe")).getRole_empl().equals("chef_de_projet")){ %>
+	<a href="${pageContext.request.contextPath}/dashBoard/projet/createProjet">Créer Un Projet</a>
+	<a href="${pageContext.request.contextPath}/dashBoard/projet">Projet</a>
+<%} %>
 </div>
 
-	you are logged in
+	you are logged in MR/Madam <%= ((Employe) session.getAttribute("employe")).getNom_empl() %> 
+	<%= ((Employe) session.getAttribute("employe")).getPrenom_empl() %>
 	
 	<div>
 	
-	List tache
+
 		<table class="table table-hover text-capitalize">
 	  <thead>
 	    <tr>
@@ -51,7 +56,12 @@
 	      <td>${tache.getDescription_tache() }</td>
 	      <td>${tache.getCharge_horaire_tache() }</td>
 	      <td>${tache.getPriorite_tache() }</td>
-	      <td>${tache.getStatut_tache() }</td>
+	      <td>
+	      	${
+	      		tache.getStatut_tache().equals("ter") ? "Terminer" : tache.getStatut_tache().equals("cours") ? "En Cours" : "A Faire"
+	      		}
+	      
+	      </td>
 	      <td>
 	      
 		      <c:choose>

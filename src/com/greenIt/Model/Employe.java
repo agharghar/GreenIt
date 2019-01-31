@@ -18,8 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="employe")
 public class Employe {
-	
-	
+		
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id_empl",nullable=false)
@@ -68,6 +67,11 @@ public class Employe {
 		this.mot_passe_empl = mot_passe_empl;
 		this.email_empl = email_empl;
 		this.date_naissance_empl = date_naissance_empl;
+	}
+	
+	
+	public int getId() {
+		return id;
 	}
 
 	public String getNom_empl() {

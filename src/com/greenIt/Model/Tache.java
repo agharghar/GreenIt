@@ -18,6 +18,7 @@ import javax.persistence.Table;
 public class Tache {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_tache" , unique=true ,nullable=false)
 	private int id ; 
 	
@@ -32,6 +33,12 @@ public class Tache {
 	
 	@Column(name="statut_tache",length=10,nullable=false)
 	private String statut_tache ; 
+	
+	@Column(name="date_debut_tache" , nullable=true)
+	private Date date_debut_tache ; 
+	
+	@Column(name="date_fin_tache" , nullable=true)
+	private Date date_fin_tache ; 	
 	
 	@ManyToOne(cascade=
 		{CascadeType.DETACH  ,CascadeType.MERGE ,CascadeType.PERSIST ,CascadeType.REFRESH})
@@ -108,6 +115,26 @@ public class Tache {
 
 	public void setStatut_tache(String statut_tache) {
 		this.statut_tache = statut_tache;
+	}
+	
+	
+	public Date getDate_debut_tache() {
+		return date_debut_tache;
+	}
+
+
+	public void setDate_debut_tache(Date date_debut_tache) {
+		this.date_debut_tache = date_debut_tache;
+	}
+
+
+	public Date getDate_fin_tache() {
+		return date_fin_tache;
+	}
+
+
+	public void setDate_fin_tache(Date date_fin_tache) {
+		this.date_fin_tache = date_fin_tache;
 	}
 
 

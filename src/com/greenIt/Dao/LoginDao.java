@@ -24,6 +24,9 @@ public class LoginDao {
 		 session = sessionFactory.openSession() ; 
 	}
 	
+	public static Session getHibernateSession() {
+		return session ; 
+	}
 
 	
 	public LoginDao(String email, String password) {

@@ -23,16 +23,10 @@ public class DataBaseSeeding {
 		
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory() ; 
 		Session session = sessionFactory.openSession() ; 
-
-		Employe employe = session.get(Employe.class, 2) ; 
-		System.out.println(employe);
-		System.out.println(employe.getEquipe());
-		for (Tache tache : employe.getTaches()) {
-			System.out.println(tache.getId()+"|"+tache.getProject().getCode_pro());
-		}
- 
 		
 
+		System.out.println(com.greenIt.Dao.Employe.getEmployeById(1));
+		
 		session.close(); 
 		sessionFactory.close(); 
 		
