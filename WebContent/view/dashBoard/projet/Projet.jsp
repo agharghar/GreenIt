@@ -32,6 +32,7 @@
 	      <th scope="col">Description</th>
 	      <th scope="col">Charge Horaire</th>
 	      <th scope="col">&nbsp;</th>
+	      <th scope="col">&nbsp;</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -39,8 +40,8 @@
 	  <c:forEach items="<%= projects %>" var="project" >
 	  	<tr>
 	      <th scope="row">${project.getCode_pro() }</th>
-	      <td>${project.getNom_pro() }</td>
-	      <td>${project.getDescription_pro() }</td>
+	      <td>${project.getNom_pro() == "" ? "--" : project.getNom_pro() }</td>
+	      <td>${project.getDescription_pro() == "" ? "--" : project.getDescription_pro()}</td>
 	      <td>${project.getCharge_horaire_pro() == "" ? "--" : project.getCharge_horaire_pro()}</td>
 	      <td>
 
@@ -48,7 +49,10 @@
 	      </td>
 
 	      <td>
-	      	<a class="btn btn-info" href="${pageContext.request.contextPath}/dashBoard/projet?code_pro=${project.getCode_pro()}">Edit</a>
+	      	<a class="btn btn-info" href="${pageContext.request.contextPath}/dashBoard/projet/projetEdit?code_pro=${project.getCode_pro()}">Edit</a>
+		</td>
+		<td>
+	      	<a class="btn btn-danger" href="${pageContext.request.contextPath}/dashBoard/projet/projetDelete?code_pro=${project.getCode_pro()}">Delete</a>
 		</td>
 	    </tr>
 	  

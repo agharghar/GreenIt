@@ -1,6 +1,8 @@
+<%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Set"%>
 <%@page import="com.greenIt.Model.Employe"%>
 <%@page import="com.greenIt.Model.Tache"%>
+<%@page import="java.text.SimpleDateFormat"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -17,9 +19,9 @@
 
 <%
 	Set<Tache> taches = ((Employe) session.getAttribute("employe")).getTaches() ; 
-
+	DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd") ; 
 %>
-
+<c:set var="simpleDateFormat" value= "<%= simpleDateFormat %>" />
 
 <div class="row">
 <a href="${pageContext.request.contextPath}/dashBoard/logOut" >Déconnection</a> | 
@@ -43,9 +45,14 @@
 	      <th scope="col">description</th>
 	      <th scope="col">charge</th>
 	      <th scope="col">priorité</th>
+	      <th scope="col">Date Debut</th>
+	      <th scope="col">Date Fin</th>
 	      <th scope="col">statut</th>
 	      <th scope="col">projet</th>
 	      <th scope="col">&nbsp;</th>
+	      <%if(((Employe) session.getAttribute("employe")).getRole_empl().equals("chef_de_projet")){ %>
+			<th scope="col">&nbsp;</th>
+		<%} %>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -56,6 +63,19 @@
 	      <td>${tache.getDescription_tache() }</td>
 	      <td>${tache.getCharge_horaire_tache() }</td>
 	      <td>${tache.getPriorite_tache() }</td>
+	      <td>
+	      	${
+	      		tache.getDate_debut_tache() == null ? "---" : simpleDateFormat.format(tache.getDate_debut_tache() )
+	      	
+	      	
+	      		}
+	      </td>
+	       <td>
+	      	${
+	      		tache.getDate_fin_tache() == null ? "---" : simpleDateFormat.format(tache.getDate_fin_tache() )
+	      		}
+	      
+	      </td>
 	      <td>
 	      	${
 	      		tache.getStatut_tache().equals("ter") ? "Terminer" : tache.getStatut_tache().equals("cours") ? "En Cours" : "A Faire"
@@ -75,7 +95,12 @@
 		   </td>
 	      <td>
 	      	<a class="btn btn-info" href="${pageContext.request.contextPath}/dashBoard/editTache?tacheId=${tache.getId()}">Edit</a>
-		</td>
+		  </td>
+		<%if(((Employe) session.getAttribute("employe")).getRole_empl().equals("chef_de_projet")){ %>
+		  <td>
+	      	<a class="btn btn-danger" href="${pageContext.request.contextPath}/dashBoard/deleteTache?tacheId=${tache.getId()}">Delete</a>
+		  </td>
+		<%} %>
 	    </tr>
 	  
 	  

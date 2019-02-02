@@ -31,10 +31,19 @@ public class Tache {
 
 	public static void update(com.greenIt.Model.Tache tache) {
 		session.getTransaction().begin();
-		System.out.println(tache.toString());
-		session.update(tache) ; 
 		
+		session.update(tache) ; 
 		session.getTransaction().commit();
+		session.refresh(tache);
+	}
+
+	public static void delete(com.greenIt.Model.Tache tache, HttpSession sess) {
+		session.beginTransaction() ;
+
+
+		session.delete(tache);
+		session.getTransaction().commit();
+		session.refresh(((Employe)sess.getAttribute("employe")));
 		
 	}
 

@@ -43,8 +43,9 @@ public class LoginDao {
 		query.setString("password",this.password) ; 
 		
 		try {
-			
-			return (Employe) query.getSingleResult() ; 
+			Employe employe = (Employe) query.getSingleResult() ;
+			session.refresh(employe);
+			return employe ; 
 			
 			
 		} catch (NoResultException  e) {

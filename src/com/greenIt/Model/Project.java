@@ -36,7 +36,7 @@ public class Project {
 	@JoinColumn(name="id_chef_project")
 	private Employe employe_project ; 
 	
-	@OneToMany(mappedBy="project")
+	@OneToMany(mappedBy="project",cascade=CascadeType.ALL)
 	private Set<Tache> taches ;
 
 	public Project() {

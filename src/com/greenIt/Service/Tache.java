@@ -18,7 +18,6 @@ public class Tache {
 		
 		tache = com.greenIt.Dao.Tache.getTacheById(id) ; 
 		session.setAttribute("tacheToEdit", tache);
-		
 		return tache  ; 
 		
 	}
@@ -45,7 +44,20 @@ public class Tache {
 		}
 		tache.setStatut_tache(statut);
 		com.greenIt.Dao.Tache.update(this.tache) ; 
-		UpdateSessionVarible.updateEmploye(session) ; 
+	
+		
+	}
+
+	public static void delete(Integer id, HttpSession session) {
+		 com.greenIt.Model.Tache tache = getTacheById(id,session) ; 
+			
+		 if(tache == null) {
+			 return ;
+		 }else {
+		
+			 com.greenIt.Dao.Tache.delete(tache,session) ; 	 
+
+		 }
 		
 	} 
 

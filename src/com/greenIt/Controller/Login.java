@@ -37,6 +37,7 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CheckLogin checkLogin = new CheckLogin(request, request.getParameter("email"), request.getParameter("password")) ; 	
 		if(checkLogin.isLoggedIn() ) {
+
 			response.sendRedirect(request.getContextPath()+"/dashBoard");
 		}else {
 			response.sendRedirect(request.getContextPath());

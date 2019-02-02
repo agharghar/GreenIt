@@ -1,5 +1,7 @@
 package com.greenIt.Dao;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 
 public class Employe {
@@ -13,8 +15,15 @@ public class Employe {
 	}
 
 	public static com.greenIt.Model.Employe getEmployeById(int id) {
-
-		return (com.greenIt.Model.Employe) session.get(com.greenIt.Model.Employe.class, id);
+		try {
+			
+			return (com.greenIt.Model.Employe) session.load(com.greenIt.Model.Employe.class, id);
+			
+		}catch(Exception exception) {
+			exception.printStackTrace();
+			return null ; 
+		}
+		
 
 		
 	}

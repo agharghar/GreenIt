@@ -42,9 +42,9 @@ public class CreateProjet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		com.greenIt.Model.Project project = new com.greenIt.Model.Project(
-				request.getParameter("code_pro"),
-				request.getParameter("nom_pro") ,
-				request.getParameter("description_pro") ,
+				request.getParameter("code_pro").trim(),
+				request.getParameter("nom_pro").trim() ,
+				request.getParameter("description_pro").trim() ,
 				Integer.valueOf(request.getParameter("charge_horaire_pro").trim())
 				) ;
 		if( new com.greenIt.Service.Project().create(project,request.getSession()) ) {

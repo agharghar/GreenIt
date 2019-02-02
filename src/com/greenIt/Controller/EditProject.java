@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.greenIt.Model.Project;
 import com.greenIt.Service.Tache;
 
 /**
- * Servlet implementation class EditeTache
+ * Servlet implementation class EditProject
  */
 
-@WebServlet(value = "/dashBoard/editTache" , name="dashBoard/editTache")
-public class EditTache extends HttpServlet {
+@WebServlet(value = "/dashBoard/projet/projetEdit" , name="dashBoard/projet/projetEdit")
+public class EditProject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditTache() {
+    public EditProject() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,10 +30,8 @@ public class EditTache extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		Tache.getTacheById( Integer.parseInt( request.getParameter("tacheId") ) , request.getSession(false)) ; 
-		request.getRequestDispatcher("/view/dashBoard/tache/EditTache.jsp").forward(request, response);
+		com.greenIt.Service.Project.getProjectById( request.getParameter("code_pro")  , request.getSession(false)) ;
+		request.getRequestDispatcher("/view/dashBoard/projet/EditProjet.jsp").forward(request, response);
 	}
 
 	/**
@@ -40,16 +39,17 @@ public class EditTache extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		Tache tacheUpdate = new Tache() ;
-		tacheUpdate.update(
-				
-				Integer.valueOf(request.getParameter("tacheId").trim())
-				, request.getParameter("debut").trim()
-				, request.getParameter("fin").trim()
-				, request.getParameter("statut").trim()
+		com.greenIt.Service.Project projectUpdate = new com.greenIt.Service.Project() ;
+		projectUpdate.update(
+				((Project)request.getSession().getAttribute("project")).getCode_pro() 
+				,Integer.valueOf(request.getParameter("charge_horaire_pro").trim())
+				,request.getParameter("description_pro").trim()
+				, request.getParameter("nom_pro").trim()
+
 				,request.getSession()
 				) ; 
 		request.getRequestDispatcher("/dashBoard").forward(request, response);
+		
 	}
 
 }

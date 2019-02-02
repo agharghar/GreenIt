@@ -1,5 +1,8 @@
-<%@page import="com.greenIt.Dao.Tache"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="com.greenIt.Model.Tache"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -85,15 +88,30 @@
 
 <%
 
-String debut = new SimpleDateFormat("yyyy-MM-dd").format(((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getDate_debut_tache()) ; 
-String fin = new SimpleDateFormat("yyyy-MM-dd").format(((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getDate_fin_tache()) ; 
+DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd") ; 
+String debut , fin ; 
+if(((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getDate_debut_tache() != null){
+	 debut = dateFormat.format(((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getDate_debut_tache()) ; 
+	 debut = "<input type='date' value='"+debut+"' name='debut' >" ; 
+}else{
+	debut = "<input type='date' name='debut' >"  ; 
+	
+}
+if(((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getDate_fin_tache() != null ){
+	 fin = dateFormat.format(((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getDate_fin_tache()) ; 
+	fin = "<input type='date' value='"+fin+"' name='fin' >" ; 
+}else{
+	fin = "<input type='date' name='fin' >"  ; 
+}
+
+
 %>
 
 <div>
 	<label>date debut</label>
-	<input type="date" value="<%=debut %>" name="debut" >
+	<%= debut%>
 	<label>date debut</label>
-	<input type="date" value="<%=fin %>" name="fin">
+	<%= fin%>
 
 </div>
 
