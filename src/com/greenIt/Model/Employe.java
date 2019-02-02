@@ -1,5 +1,6 @@
 package com.greenIt.Model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -165,6 +166,13 @@ public class Employe {
 		if(this.projects.isEmpty())
 			this.projects = new HashSet<Project>() ;
 		this.projects.add(project) ; 
+		
+	}
+	
+	public ArrayList<Tache> getTacheEquipe(int id){
+		ArrayList<Tache> taches = com.greenIt.Dao.Equipe.getTaches(id) ; 
+		
+		return taches ; 
 		
 	}
 

@@ -30,7 +30,7 @@ public class EditProject extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		com.greenIt.Service.Project.getProjectById( request.getParameter("code_pro")  , request.getSession(false)) ;
+		com.greenIt.Service.Project.getProjectById( request.getParameter("code_pro") , request.getSession(false) ) ;
 		request.getRequestDispatcher("/view/dashBoard/projet/EditProjet.jsp").forward(request, response);
 	}
 

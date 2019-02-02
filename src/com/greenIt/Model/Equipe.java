@@ -35,7 +35,13 @@ public class Equipe {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public int getId() {
+		return id;
+	}
 
+	
 	public Equipe(String nom_equipe, String description_equipe) {
 		super();
 		this.nom_equipe = nom_equipe;

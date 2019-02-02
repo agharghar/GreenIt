@@ -21,7 +21,10 @@ public class Project {
 		com.greenIt.Model.Project project = null ;
 		
 		project = com.greenIt.Dao.Project.getProjectById(id) ; 
-		session.setAttribute("project",project);
+		if(session != null ) {
+			session.setAttribute("project",project);
+		}
+			
 		return project  ; 
 		
 	}

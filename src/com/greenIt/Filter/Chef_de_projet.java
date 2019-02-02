@@ -17,7 +17,9 @@ import com.greenIt.Model.Employe;
 /**
  * Servlet Filter implementation class Chef_de_projet
  */
-@WebFilter(urlPatterns="/dashBoard/projet/*" , filterName = "chef_de_projet"  )
+@WebFilter(urlPatterns=
+	{"/dashBoard/projet/*" , "/dashBoard/deleteTache" ,"/dashBoard/tache/*"} ,
+	filterName = "chef_de_projet"  )
 
 public class Chef_de_projet implements Filter {
 

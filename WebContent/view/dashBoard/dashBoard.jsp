@@ -1,5 +1,8 @@
+<%@page import="java.util.HashSet"%>
+<%@page import="com.greenIt.Dao.Equipe"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.greenIt.Model.Employe"%>
 <%@page import="com.greenIt.Model.Tache"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -17,8 +20,18 @@
 </head>
 <body>
 
-<%
-	Set<Tache> taches = ((Employe) session.getAttribute("employe")).getTaches() ; 
+<%	
+	Employe employe = ((Employe) session.getAttribute("employe")) ; 
+
+	Set<Tache> taches  = new HashSet(); 
+	if(employe.getRole_empl().equals("employe")){
+		taches.addAll( employe.getTaches() );
+		
+	}else {
+		taches.addAll( Equipe.getTaches(employe.getEquipe().getId()) ) ; 
+		
+	}
+
 	DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd") ; 
 %>
 <c:set var="simpleDateFormat" value= "<%= simpleDateFormat %>" />
@@ -27,8 +40,8 @@
 <a href="${pageContext.request.contextPath}/dashBoard/logOut" >Déconnection</a> | 
 <a href="${pageContext.request.contextPath}/dashBoard/profile" >Profile</a> | 
 <%if(((Employe) session.getAttribute("employe")).getRole_empl().equals("chef_de_projet")){ %>
-	<a href="${pageContext.request.contextPath}/dashBoard/projet/createProjet">Créer Un Projet</a>
-	<a href="${pageContext.request.contextPath}/dashBoard/projet">Projet</a>
+	<a href="${pageContext.request.contextPath}/dashBoard/tache/createTache">Créer Tache</a>|
+	<a href="${pageContext.request.contextPath}/dashBoard/projet">Projet</a>|
 <%} %>
 </div>
 
@@ -42,6 +55,11 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">id</th>
+	      <%
+	      	String affecter  = employe.getRole_empl().equals("chef_de_projet") ? "<th scope='col' >Affecter à</th>" : "" ;
+	      		      
+	      %>
+	       <%=affecter %>
 	      <th scope="col">description</th>
 	      <th scope="col">charge</th>
 	      <th scope="col">priorité</th>
@@ -60,6 +78,13 @@
 	  <c:forEach items="<%=taches %>" var="tache">
 	  	<tr>
 	      <th scope="row">${tache.getId() }</th>
+	      
+		  
+		<%  if( employe.getRole_empl().equals("chef_de_projet") ){ %>
+			 <td> ${tache.getEmploye().getNom_empl()}</td>
+		 <%} %>
+		  
+		  
 	      <td>${tache.getDescription_tache() }</td>
 	      <td>${tache.getCharge_horaire_tache() }</td>
 	      <td>${tache.getPriorite_tache() }</td>

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 
+import com.greenIt.Model.Employe;
+
 public class Tache {
 	
 	private com.greenIt.Model.Tache tache ;
@@ -59,6 +61,15 @@ public class Tache {
 
 		 }
 		
+	}
+
+	public boolean create(com.greenIt.Model.Tache tache , HttpSession session ) {
+
+		if(new com.greenIt.Dao.Tache().create(tache , session )) {
+			
+			return true ;
+		}
+		return false;
 	} 
 
 	

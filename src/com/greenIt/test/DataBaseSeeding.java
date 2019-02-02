@@ -25,7 +25,7 @@ public class DataBaseSeeding {
 		Session session = sessionFactory.openSession() ; 
 		
 
-		System.out.println(com.greenIt.Dao.Employe.getEmployeById(1));
+		System.out.println(com.greenIt.Dao.Equipe.getEmployes(1));
 		
 		session.close(); 
 		sessionFactory.close(); 

@@ -43,7 +43,22 @@ public class Tache {
 
 		session.delete(tache);
 		session.getTransaction().commit();
-		session.refresh(((Employe)sess.getAttribute("employe")));
+		session.refresh( ((Employe)sess.getAttribute("employe")) );
+		
+	}
+
+	public boolean create(com.greenIt.Model.Tache tache , HttpSession sess) {
+		try {
+			session.beginTransaction() ; 
+			session.save(tache) ; 
+			session.getTransaction().commit();
+			session.refresh( ((Employe)sess.getAttribute("employe")) );
+
+			return true ; 
+		} catch (Exception e) {
+			e.getStackTrace() ; 
+			return false ; 
+		}
 		
 	}
 
