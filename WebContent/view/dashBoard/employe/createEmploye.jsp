@@ -32,11 +32,11 @@
 			<input type="date" required="required" id="date_naissance_empl" name="date_naissance_empl" />
 		</div>
 		<div>
-			<label for="charge_horaire_pro">Role</label>
+			<label for="role_empl">Role</label>
 			<select name="role_empl" id="role_empl" required="required">
-				<option value="cours">En Cours</option>
-				<option value="faire">A Faire</option>
-				<option value="ter">Terminer</option>
+				<option value="employe">employe</option>
+				<option value="chef_de_projet">Chef De Projet</option>
+				<option value="administrateur">Administrateur</option>
 			</select>
 		</div>
 		<div>

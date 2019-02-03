@@ -1,8 +1,9 @@
+<%@page import="com.greenIt.Model.Employe"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="com.greenIt.Model.Tache"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -21,10 +22,12 @@
 	value=" <%= ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getId() %> " readonly />
 </div>
 <div>
-	<label for="cod">Code projet </label>
-	<input type="text" id="code" 
-	value=" <%= ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getProject() == null ? 
-			"--" : ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getProject().getCode_pro() %> " required="required"/>
+	<label for="code_pro">Code Projet</label>
+	<select name="code_pro" id="code_pro" required="required">	
+		<c:forEach items='<%=((Employe)session.getAttribute("employe")).getProjects() %>' var="project">
+			<option value="${project.getCode_pro()}">${project.getCode_pro()}</option>
+		</c:forEach>
+	</select>
 </div>
 <div>
 	<label for="charge">Charge Horraire </label>

@@ -37,13 +37,13 @@
 				<tr>	     
 				    <td>${equipe.getId() }</td>
 				    <td>	${
-				    		equipe.getDescription_equipe() == null ? "---" : equipe.getDescription_equipe()
-				    			    	
+				    		
+				    		equipe.getNom_equipe() == null ? "---" : equipe.getNom_equipe()	    	
 				    		}
 				    </td>
 				    <td>
 				    	${
-				    		equipe.getNom_equipe() == null ? "---" : equipe.getNom_equipe()
+				    		equipe.getDescription_equipe() == null ? "---" : equipe.getDescription_equipe()
 				    			    	
 				    		}
 				    </td>

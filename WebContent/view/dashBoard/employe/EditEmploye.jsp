@@ -70,10 +70,10 @@
 	</div>
 	<div>
 		<label for="role_empl">Role</label>
-		<select name="role_empl" id="role_empl">
-			<option value="faire">A Faire</option>
-			<option value="cours">En Cours</option>
-			<option value="ter">Terminer</option>		
+		<select name="role_empl" id="role_empl" required="required">
+			<option value="employe">employe</option>
+			<option value="chef_de_projet">Chef De Projet</option>
+			<option value="administrateur">Administrateur</option>
 		</select>
 	</div>
 	<div>

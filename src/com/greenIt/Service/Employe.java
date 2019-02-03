@@ -64,7 +64,7 @@ public class Employe {
 			e.printStackTrace();
 		}
 		employe.setEmail_empl(email_empl);
-		employe.setNom_empl(prenom_empl);
+		employe.setNom_empl(nom_empl);
 		employe.setPrenom_empl(prenom_empl);
 		employe.setRole_empl(role_empl);
 		employe.setEquipe(equipe);

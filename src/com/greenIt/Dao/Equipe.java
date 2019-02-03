@@ -72,12 +72,12 @@ public class Equipe {
 		return query.getResultList() ; 
 	}
 	
-	public static ArrayList<com.greenIt.Model.Tache> getTaches(int id ){
+	public static ArrayList<com.greenIt.Model.Tache> getTaches(int idEquipe ){
 		ArrayList<com.greenIt.Model.Tache> taches ;
 		ArrayList <Integer> idEmpl = new ArrayList<Integer>()  ; 
 
 		Query query = session.createQuery("select ep.id from Employe as ep where equipe.id =:id ");
-		query.setParameter("id", id) ; 
+		query.setParameter("id", idEquipe) ; 
 		idEmpl.addAll( query.getResultList()) ; 
 
 		Query query2 = session.createQuery("from Tache where employe.id in (:idEmpl) ");

@@ -1,3 +1,4 @@
+<%@page import="com.greenIt.Model.Project"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="com.greenIt.Dao.Equipe"%>
 <%@page import="java.text.DateFormat"%>
@@ -29,7 +30,7 @@
 		
 	}else {
 		taches.addAll( Equipe.getTaches(employe.getEquipe().getId()) ) ; 
-		
+		taches.removeIf(t -> !employe.getProjects().toString().contains(t.getProject().toString())  ) ; 
 	}
 
 	DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd") ; 

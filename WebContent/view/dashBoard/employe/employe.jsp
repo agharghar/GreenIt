@@ -42,33 +42,34 @@
 	 	DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd") ; 
 	  	List<Employe> allEmployes = ((List<Employe>) request.getAttribute("allEmployes") ) ; 
 	  	int myId = ((Employe) session.getAttribute("employe")).getId() ; 
-	  	boolean test ;
+
 	  %>
-<c:set var="simpleDateFormat" value= "<%= simpleDateFormat %>" />
-		<c:forEach items="${allEmployes}" var="employe">
-			
-		    <c:if test="${employe.getId().equals(myId)}">  	
+
+		
+		<%for(Employe employe :  allEmployes){ %>
+			<%if(myId != employe.getId()){ %>
+		
 				<tr>	     
-				    <td>${employe.getNom_empl() }</td>
-				    <td>${employe.getPrenom_empl()  }</td>
-				    <td>${employe.getEmail_empl() }</td>
+				    <td><%=employe.getNom_empl()  %></td>
+				    <td>  <%= employe.getPrenom_empl() %></td>
+				    <td><%= employe.getEmail_empl() %></td>
 				    <td>
-				    	${
-				    		employe.getDate_naissance_empl() == null ? "---" : simpleDateFormat.format(employe.getDate_naissance_empl() )
-				    			    	
-				    		}
+				    <%=  employe.getDate_naissance_empl() == null ? "---" : simpleDateFormat.format(employe.getDate_naissance_empl() ) %>
+
 				    </td>
-				    <td>${employe.getRole_empl()  }</td>
-				    <td>${employe.getEquipe() == null ? "---" : employe.getEquipe().getNom_equipe() }</td>
+				    <td><%= employe.getRole_empl()  %></td>
+				    <td><%= employe.getEquipe() == null ? "---" : employe.getEquipe().getNom_equipe() %></td>
 				    <td>
-				    	<a class="btn btn-info" href="${pageContext.request.contextPath}/dashBoard/employe/editEmploye?id_empl=${employe.getId()}">Edit</a>
+				    	<a class="btn btn-info" href="${pageContext.request.contextPath}/dashBoard/employe/editEmploye?id_empl=<%= employe.getId()%>">Edit</a>
 				    </td>
 				    <td>
-				    	<a class="btn btn-danger" href="${pageContext.request.contextPath}/dashBoard/employe/deleteEmploye?id_empl=${employe.getId()}">Delete</a>
-				    </td>
-				</tr>  	
-	 		</c:if>
-		</c:forEach>
+				    	<a class="btn btn-danger" href="${pageContext.request.contextPath}/dashBoard/employe/deleteEmploye?id_empl=<%= employe.getId()%>">Delete</a>
+				 </td>
+		
+		
+		
+			<%} %>
+		<%} %>
 
 	  </tbody>
 	</table>

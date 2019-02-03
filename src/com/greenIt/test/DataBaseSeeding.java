@@ -3,6 +3,8 @@ package com.greenIt.test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.NoResultException;
 
@@ -23,8 +25,13 @@ public class DataBaseSeeding {
 		
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory() ; 
 		Session session = sessionFactory.openSession() ; 
-		
-		
+		Set<Tache> taches  = new HashSet(); 
+		taches.addAll( com.greenIt.Dao.Equipe.getTaches(1) ) ;
+		System.out.println(taches.toString());
+		Employe employe = session.load(Employe.class, 12) ; 
+		taches.removeIf(t -> !employe.getProjects().toString().contains(t.getProject().toString())  ) ; 
+
+		System.out.println(taches.toString());
 	
 		
 		session.close(); 
