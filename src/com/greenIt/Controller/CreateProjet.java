@@ -48,7 +48,7 @@ public class CreateProjet extends HttpServlet {
 				Integer.valueOf(request.getParameter("charge_horaire_pro").trim())
 				) ;
 		if( new com.greenIt.Service.Project().create(project,request.getSession()) ) {
-			request.getRequestDispatcher("/dashBoard").forward(request, response);
+			request.getRequestDispatcher("/dashBoard/projet").forward(request, response);
 		}else {
 			doGet(request, response);
 		}

@@ -90,6 +90,14 @@ public class Equipe {
 	}
 	
 	
+	public static List<com.greenIt.Model.Equipe> getAllEquipes(){
+		List<com.greenIt.Model.Equipe> equipes = new ArrayList() ; 
+		Query query = session.createQuery("from Equipe");
+		equipes.addAll(query.getResultList()) ; 
+		return equipes ; 
+		
+	}
+	
 	
 	
 	

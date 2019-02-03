@@ -6,18 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.greenIt.Service.* ; 
+
 /**
- * Servlet implementation class LogOut
+ * Servlet implementation class CreateEquipe
  */
-@WebServlet(value = "/dashBoard/logOut" , name="dashBoard/logOut")
-public class LogOut extends HttpServlet {
+
+@WebServlet(value = "/dashBoard/employe/equipe/create" , name="/dashBoard/employe/equipe/create")
+public class CreateEquipe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogOut() {
+    public CreateEquipe() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,22 +27,25 @@ public class LogOut extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-			com.greenIt.Service.LogOut.logOut(request.getSession()) ; 
-
-			response.sendRedirect(request.getContextPath());
-
-			
 		
-	
+		request.getRequestDispatcher("/view/dashBoard/equipe/createEquipe.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		com.greenIt.Model.Equipe equipe = new com.greenIt.Model.Equipe(
+				request.getParameter("nom_equipe").trim() ,
+				request.getParameter("description_equipe").trim() 
+				
+				
+				) ;
+		if( new com.greenIt.Service.Equipe().create(equipe,request.getSession()) ) {
+			request.getRequestDispatcher("/dashBoard/employe/equipe").forward(request, response);
+		}else {
+			doGet(request, response);
+		}
 	}
 
 }

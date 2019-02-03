@@ -42,7 +42,11 @@
 <%if(((Employe) session.getAttribute("employe")).getRole_empl().equals("chef_de_projet")){ %>
 	<a href="${pageContext.request.contextPath}/dashBoard/tache/createTache">Créer Tache</a>|
 	<a href="${pageContext.request.contextPath}/dashBoard/projet">Projet</a>|
-<%} %>
+<%}else if( ((Employe) session.getAttribute("employe")).getRole_empl().equals("administrateur") ){%>
+	<a href="${pageContext.request.contextPath}/dashBoard/employe">Employes</a>|
+
+<%}%>
+
 </div>
 
 	you are logged in MR/Madam <%= ((Employe) session.getAttribute("employe")).getNom_empl() %> 

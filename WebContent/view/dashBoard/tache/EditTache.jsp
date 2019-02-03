@@ -24,22 +24,22 @@
 	<label for="cod">Code projet </label>
 	<input type="text" id="code" 
 	value=" <%= ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getProject() == null ? 
-			"--" : ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getProject().getCode_pro() %> " readonly="readonly"/>
+			"--" : ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getProject().getCode_pro() %> " required="required"/>
 </div>
 <div>
 	<label for="charge">Charge Horraire </label>
 	<input type="text" id="charge" 
-	value=" <%= ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getCharge_horaire_tache() %> " readonly="readonly"/>
+	value=" <%= ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getCharge_horaire_tache() %> " required="required"/>
 </div>
 <div>
 	<label for="prop">Proprité</label>
 	<input type="text" id="prop" 
-	value=" <%= ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getPriorite_tache() %> " readonly="readonly"/>
+	value=" <%= ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getPriorite_tache() %> " required="required"/>
 </div>
 <div>
 	<label for="desc">Description</label>
 	<input type="text" id="desc" 
-	value=" <%= ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getDescription_tache() %> " readonly="readonly"/>
+	value=" <%= ((com.greenIt.Model.Tache) session.getAttribute("tacheToEdit")).getDescription_tache() %> " required="required"/>
 </div>
 	
 

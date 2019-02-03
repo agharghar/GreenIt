@@ -24,8 +24,8 @@ public class DataBaseSeeding {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory() ; 
 		Session session = sessionFactory.openSession() ; 
 		
-
-		System.out.println(com.greenIt.Dao.Equipe.getEmployes(1));
+		
+	
 		
 		session.close(); 
 		sessionFactory.close(); 
