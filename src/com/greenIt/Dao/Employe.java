@@ -35,12 +35,13 @@ public class Employe {
 	}
 
 	public static void delete(com.greenIt.Model.Employe employe, HttpSession sess) {
+		employe.setEquipe(null);
+		Employe.update(employe);
 		session.beginTransaction() ;
-
 
 		session.delete(employe);
 		session.getTransaction().commit();
-
+		session.refresh(((com.greenIt.Model.Employe)sess.getAttribute("employe")));
 		
 	}
 

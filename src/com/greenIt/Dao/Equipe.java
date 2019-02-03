@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 
-import com.greenIt.Model.Employe;
+
 
 public class Equipe {
 	private static Session session =  LoginDao.getHibernateSession() ;
@@ -30,7 +30,7 @@ public class Equipe {
 	public static void delete(com.greenIt.Model.Equipe equipe , HttpSession sess) {
 
 		session.beginTransaction() ;
-
+		
 
 		session.delete(equipe);
 		session.getTransaction().commit();
